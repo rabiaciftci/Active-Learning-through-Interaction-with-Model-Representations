@@ -10,8 +10,7 @@ from config import DATA_DIR, HELD_OUT_FOLD, INITIAL_LABELS_PER_CLASS_COUNT, BASE
 API         = BASE_URL.rstrip("/")
 ANNOTATE_GET = f"{API}/annotate"
 HUMAN_POST   = f"{API}/human_annotations"
-CSV_PATH     = os.path.join(DATA_DIR, "UrbanSound8K.csv")
-
+CSV_PATH = os.path.join(DATA_DIR, "metadata", "UrbanSound8K.csv")
 
 def build_filename_to_code():
     """
