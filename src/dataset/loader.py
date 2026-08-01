@@ -52,7 +52,7 @@ class UrbanSoundEmbeddingDataset(Dataset):
 class UrbanSoundLoader:
     def __init__(self, embedder):
         self.embedder = embedder
-        self.metadata_path = os.path.join(DATA_DIR, "UrbanSound8K.csv")
+        self.metadata_path = os.path.join(DATA_DIR, "metadata", "UrbanSound8K.csv")
         self.cache_dir = Path(DATA_DIR) / "embeddings_cache"
         self.cache_dir.mkdir(parents=True, exist_ok=True)
 
@@ -164,13 +164,13 @@ class UrbanSoundLoader:
         labeled_indices = list(range(len(labeled_df)))
         unlabeled_indices = list(range(len(labeled_df), len(combined_df)))
 
-        train_paths = [Path(DATA_DIR) / f"fold{row['fold']}" / row['slice_file_name'] for _, row in combined_df.iterrows()]
+        train_paths = [Path(DATA_DIR) / "audio" / f"fold{row['fold']}" / row['slice_file_name'] for _, row in combined_df.iterrows()]
         train_labels = combined_df['class_code'].to_numpy()
         train_original_labels = combined_df['class'].tolist()
         train_filenames = [os.path.basename(p) for p in train_paths]
         #full_train_dataset = UrbanSoundEmbeddingDataset(train_paths, train_labels, train_original_labels, self.embedder)
 
-        test_paths = [Path(DATA_DIR) / f"fold{row['fold']}" / row['slice_file_name'] for _, row in test_df.iterrows()]
+        test_paths = [Path(DATA_DIR) / "audio" / f"fold{row['fold']}" / row['slice_file_name'] for _, row in test_df.iterrows()]
         test_labels = test_df['class_code'].to_numpy()
         test_original_labels = test_df['class'].tolist()
         test_filenames = [os.path.basename(p) for p in test_paths]

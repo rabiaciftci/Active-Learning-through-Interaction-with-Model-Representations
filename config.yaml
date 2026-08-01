@@ -1,5 +1,5 @@
 # DATASET SETTINGS
-data_dir: '/Users/ridasaghir/Documents/Datasets/UrbanSound8K'
+data_dir: 'data/UrbanSound8K'
 num_classes: 10
 
 # MODEL ARCHITECTURE
